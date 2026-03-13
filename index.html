@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arhi Browser v5.0 | Скачать</title>
+    <style>
+        :root {
+            --bg-dark: #07071a;
+            --bg-light: #10141f;
+            --accent: #fa5252;
+            --accent-glow: rgba(250, 82, 82, 0.6);
+            --text-main: #ffffff;
+            --text-muted: #7b8496;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Particles Background */
+        .bg-glow {
+            position: absolute;
+            top: -20%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            opacity: 0.15;
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        .bg-glow-2 {
+            position: absolute;
+            bottom: -20%;
+            right: -10%;
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, #5865F2 0%, transparent 60%);
+            opacity: 0.1;
+            z-index: -1;
+            filter: blur(100px);
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: rgba(16, 20, 31, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(250, 82, 82, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 30px var(--accent-glow);
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            box-shadow: 0 0 20px rgba(250, 82, 82, 0.4);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            box-shadow: 0 0 40px rgba(250, 82, 82, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 10%;
+            background-color: var(--bg-light);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--text-main);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-dark);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+            .hero p { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <nav>
+        <a href="#" class="logo">Arhi <span>Browser</span></a>
+        <div class="nav-links">
+            <a href="#features">Возможности</a>
+            <a href="https://github.com/anonim110/Arhi-Browse" target="_blank">GitHub</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Браузер для <span>Геймеров</span></h1>
+        <p>Arhi Browser v5.0 — это идеальное сочетание скорости, кастомизации и встроенных инструментов в стилистике Opera GX. Сделай интернет своим.</p>
+        
+        <div class="btn-group">
+            <a href="https://github.com/anonim110/Arhi-Browse/releases/latest" class="btn btn-primary" target="_blank">📥 Скачать для Windows (exe)</a>
+            <a href="#features" class="btn btn-secondary">Узнать больше</a>
+        </div>
+        
+        <!-- Mockup Image placeholder -->
+        <div style="margin-top: 60px; max-width: 900px; width: 100%; height: 450px; background: rgba(0,0,0,0.4); border: 2px solid rgba(250,82,82,0.3); border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+            <div style="position: absolute; top:0; left:0; right:0; height: 30px; background: #0c0f22; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; padding-left: 10px;">
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #fa5252; margin-right: 6px;"></div>
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #fbbf24; margin-right: 6px;"></div>
+                <div style="width: 12px; height: 12px; border-radius: 50%; background: #34d399;"></div>
+            </div>
+            <h2 style="color: rgba(255,255,255,0.2); font-size: 2rem; margin-top: 30px;">[ Интерфейс Твоего Браузера ]</h2>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2 class="section-title">Главные Фишки</h2>
+        <div class="features-grid">
+            
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3>Мессенджеры под рукой</h3>
+                <p>Telegram, Discord, WhatsApp и TikTok встроены прямо в боковую панель. Общайся и смотри видео, не переключая основные вкладки и не отвлекаясь от игры.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🌙</div>
+                <h3>Принудительный Dark Mode</h3>
+                <p>Устал от ослепляющих белых сайтов? Наша технология перекрасит любой, даже самый светлый сайт в глубокие темные тона одним кликом на иконку полумесяца.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Полная Кастомизация</h3>
+                <p>Твой браузер — твои правила. Устанавливай собственные обои на новую вкладку, наслаждайся неоновым свечением и стильным футуристичным дизайном.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Умные Скриншоты</h3>
+                <p>Сохраняй интересные моменты на лету! Скриншоты одним кликом, которые автоматически сохраняются в специальную папку на рабочем столе для быстрого доступа.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔇</div>
+                <h3>Встроенный AdBlock</h3>
+                <p>Забудь о навязчивой рекламе и всплывающих окнах. Встроенный блокировщик защитит тебя от трекеров и ускорит загрузку страниц.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔊</div>
+                <h3>Игровой Звук</h3>
+                <p>Механический звук печати, приятные клики и неоновые ховер-эффекты — создают ощущение полного погружения, как в настоящей ААА-игре.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Arhi Browser. Created by anonim110. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
